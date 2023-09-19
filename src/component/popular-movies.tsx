@@ -6,11 +6,11 @@ import {FlatList, TouchableOpacity} from 'react-native-gesture-handler';
 
 import {fetchmovies} from '../healpers/api-helpers';
 
-interface I_popular_Props {
+interface IPopularMovies {
   type: string;
 }
 
-export default function PopularMovies(props: I_popular_Props) {
+export default function PopularMovies(props: IPopularMovies) {
   const type = props.type;
   const navigation = useNavigation();
   const [popularMovies, setPopularMovies] = useState([]);
