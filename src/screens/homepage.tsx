@@ -2,9 +2,9 @@ import React from 'react';
 import {StyleSheet, View} from 'react-native';
 import {ScrollView} from 'react-native-gesture-handler';
 
-import Navbar from '../component/Navbar';
-import Upcoming from '../component/Upcoming';
-import Popular from '../component/Popular';
+import Navbar from '../component/navbar';
+import UpComingMovies from '../component/upcoming-movies';
+import PopularMovies from '../component/popular-movies';
 
 export default function Homepage() {
   return (
@@ -13,8 +13,8 @@ export default function Homepage() {
 
       <View style={styles.movies}>
         <ScrollView showsVerticalScrollIndicator={false}>
-          <Upcoming type="upcoming" />
-          <Popular type="popular" />
+          <UpComingMovies type="upcoming" />
+          <PopularMovies type="popular" />
         </ScrollView>
       </View>
     </View>
@@ -23,8 +23,8 @@ export default function Homepage() {
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: '#23292fff',
     flex: 1,
+    backgroundColor: '#23292fff',
   },
   movies: {
     margin: 20,

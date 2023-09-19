@@ -1,8 +1,8 @@
 import {Image, StyleSheet, Text, View} from 'react-native';
 import React from 'react';
-import Navbar from '../component/Navbar';
+import Navbar from '../component/navbar';
 
-export default function Detailpage({route}) {
+export default function MovieDetail({route}) {
   const {movie} = route.params;
   return (
     <View style={styles.container}>
@@ -24,8 +24,8 @@ export default function Detailpage({route}) {
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: '#23292fff',
     flex: 1,
+    backgroundColor: '#23292fff',
   },
   text: {
     fontSize: 18,

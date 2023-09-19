@@ -12,13 +12,14 @@ import Icons from 'react-native-vector-icons/FontAwesome';
 
 import {fetchmovies} from '../healpers/api-helpers';
 
-interface I_upcoming_Props {
+interface IUpComingProps {
   type: string;
 }
 
-export default function Upcoming(props: I_upcoming_Props) {
+export default function UpComingMovies(props: IUpComingProps) {
   const type = props.type;
   const navigation = useNavigation();
+
   const [upcomingMovies, setUpcomingMovies] = useState([]);
 
   useEffect(() => {

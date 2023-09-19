@@ -10,7 +10,7 @@ interface I_popular_Props {
   type: string;
 }
 
-export default function Popular(props: I_popular_Props) {
+export default function PopularMovies(props: I_popular_Props) {
   const type = props.type;
   const navigation = useNavigation();
   const [popularMovies, setPopularMovies] = useState([]);
