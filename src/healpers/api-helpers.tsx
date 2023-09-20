@@ -15,3 +15,21 @@ export const fetchmovies = async (type: string) => {
     throw error;
   }
 };
+
+export const fetchgenres = async (genre_ids: number[]) => {
+  try {
+    const response = await axios.get(
+      `${BASE_URL}/genre/movie/list?api_key=${API_KEY}&language=en`,
+    );
+    const allGenres = response.data.genres;
+
+    const filteredGenres = allGenres.filter(genre =>
+      genre_ids.includes(genre.id),
+    );
+
+    return filteredGenres;
+  } catch (error) {
+    console.error('Error Fetching Genres: ', error);
+    throw error;
+  }
+};

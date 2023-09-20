@@ -1,10 +1,10 @@
 import {
-  FlatList,
-  StyleSheet,
   Text,
-  TouchableOpacity,
   View,
   Image,
+  FlatList,
+  StyleSheet,
+  TouchableOpacity,
 } from 'react-native';
 import React, {useEffect, useState} from 'react';
 import {useNavigation} from '@react-navigation/native';

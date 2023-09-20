@@ -5,6 +5,7 @@ import Icons from 'react-native-vector-icons/FontAwesome';
 import {Image, StyleSheet, Text, View} from 'react-native';
 
 import MovieOverview from '../component/movie-overview';
+import MovieGenre from '../component/moive-genres';
 
 export default function MovieDetail({route}) {
   const {movie} = route.params;
@@ -29,6 +30,7 @@ export default function MovieDetail({route}) {
             </View>
           </View>
         </View>
+        <MovieGenre genreIds={movie.genre_ids} />
         <MovieOverview overview={movie.overview} />
       </ScrollView>
     </View>
@@ -42,7 +44,7 @@ const styles = StyleSheet.create({
   },
   text: {
     margin: 20,
-    fontSize: 26,
+    fontSize: 24,
     color: 'white',
     fontWeight: 'bold',
   },
