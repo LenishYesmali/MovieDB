@@ -1,3 +1,4 @@
+import React, {useState} from 'react';
 import {
   Text,
   View,
@@ -5,10 +6,13 @@ import {
   StyleSheet,
   TouchableWithoutFeedback,
 } from 'react-native';
-import React, {useState} from 'react';
 import Icons from 'react-native-vector-icons/Ionicons';
+import {useNavigation} from '@react-navigation/native';
 
 export default function Navbar() {
+  const navigation = useNavigation();
+
+  const [searchText, setSearchText] = useState('');
   const [isSearchVisible, setSearchVisible] = useState(false);
 
   const toggleSearchBar = () => {
@@ -17,6 +21,12 @@ export default function Navbar() {
 
   const closeSearchBar = () => {
     setSearchVisible(false);
+    setSearchText('');
+  };
+
+  const handleSearchSubmit = () => {
+    navigation.navigate('Search', {searchText});
+    closeSearchBar();
   };
 
   return (
@@ -41,6 +51,9 @@ export default function Navbar() {
               placeholder="Search..."
               style={styles.searchInput}
               autoFocus
+              value={searchText}
+              onChangeText={text => setSearchText(text)}
+              onSubmitEditing={handleSearchSubmit}
             />
           </View>
         )}

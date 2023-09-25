@@ -7,8 +7,8 @@ import {useNavigation, useRoute} from '@react-navigation/native';
 import {deviceWidth} from '../constants/dimensions';
 
 export default function BottomNavbar() {
-  const navigation = useNavigation();
   const route = useRoute();
+  const navigation = useNavigation();
 
   const isScreenActive = (screenName: string) => {
     return route.name === screenName;

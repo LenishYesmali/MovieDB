@@ -1,51 +1,54 @@
 import React, {useEffect, useState} from 'react';
 import {useNavigation} from '@react-navigation/native';
+import {Image, StyleSheet, Text, View} from 'react-native';
 import Icons from 'react-native-vector-icons/FontAwesome5';
-import {StyleSheet, View, FlatList, Image, Text} from 'react-native';
-import AsyncStorage from '@react-native-async-storage/async-storage';
+import {FlatList, TouchableOpacity} from 'react-native-gesture-handler';
 
 import Navbar from '../component/navbar';
 import BottomNavbar from '../component/bottom-navbar';
-import {TouchableOpacity} from 'react-native-gesture-handler';
+import {fetchsearchresult} from '../healpers/api-helpers';
 
-interface IBookmarkedMovie {
+interface ISearchResultPageProps {
+  route: {
+    params: {
+      searchText: string;
+    };
+  };
+}
+
+interface SearchResultItem {
   id: number;
-  title: string;
   poster_path: string;
 }
 
-export default function UserBookmark() {
+export default function SearchResult({route}: ISearchResultPageProps) {
+  const {searchText} = route.params;
   const navigation = useNavigation();
 
-  const [bookmarkedMovies, setBookmarkedMovies] = useState<IBookmarkedMovie[]>(
-    [],
-  );
+  const [searchQuery, setSearchQuery] = useState<SearchResultItem[]>([]);
 
   useEffect(() => {
-    const fetchBookmarkedMovies = async () => {
+    const fetchQuery = async () => {
       try {
-        const bookmarks = await AsyncStorage.getItem('bookmarkedMovies');
-        if (bookmarks) {
-          const parsedBookmarks = JSON.parse(bookmarks) as IBookmarkedMovie[];
-          setBookmarkedMovies(parsedBookmarks);
-        }
+        const data = await fetchsearchresult(searchText);
+        setSearchQuery(data.results);
+        console.log(searchQuery);
       } catch (error) {
-        console.error('Error fetching bookmarked movies', error);
+        console.error('Search failed', error);
       }
     };
-    fetchBookmarkedMovies();
-  }, []);
+    fetchQuery();
+  }, [searchText]);
 
   return (
     <View style={styles.container}>
       <Navbar />
       <View style={styles.title}>
         <Icons name="minus" style={styles.line} />
-        <Text style={styles.text}>Bookmarks</Text>
+        <Text style={styles.text}>Search Results</Text>
       </View>
-
       <FlatList
-        data={bookmarkedMovies}
+        data={searchQuery}
         keyExtractor={item => item.id.toString()}
         renderItem={({item}) => (
           <View style={styles.image_container}>
@@ -62,7 +65,6 @@ export default function UserBookmark() {
         )}
         numColumns={2}
       />
-
       <View style={styles.bottom_navbar}>
         <BottomNavbar />
       </View>

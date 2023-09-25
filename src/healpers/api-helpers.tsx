@@ -39,9 +39,20 @@ export const fetchvideos = async (movie_id: number) => {
     const response = await axios.get(
       `${BASE_URL}/movie/${movie_id}/videos?api_key=${API_KEY}&language=en-US`,
     );
-
+    console.log(movie_id);
     return response.data.results;
   } catch (error) {
     console.error('Error Fetching Video: ', error);
+  }
+};
+
+export const fetchsearchresult = async (query: string) => {
+  try {
+    const response = await axios.get(
+      `${BASE_URL}/search/movie?api_key=${API_KEY}&query=${query}`,
+    );
+    return response.data;
+  } catch (error) {
+    console.error('Error Fetching Search Result', error);
   }
 };
