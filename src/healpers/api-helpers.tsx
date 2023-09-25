@@ -33,3 +33,15 @@ export const fetchgenres = async (genre_ids: number[]) => {
     throw error;
   }
 };
+
+export const fetchvideos = async (movie_id: number) => {
+  try {
+    const response = await axios.get(
+      `${BASE_URL}/movie/${movie_id}/videos?api_key=${API_KEY}&language=en-US`,
+    );
+
+    return response.data.results;
+  } catch (error) {
+    console.error('Error Fetching Video: ', error);
+  }
+};

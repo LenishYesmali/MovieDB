@@ -4,6 +4,7 @@ import {createStackNavigator} from '@react-navigation/stack';
 
 import Homepage from './src/screens/homepage';
 import MovieDetail from './src/screens/movie-detail';
+import UserBookmark from './src/screens/user-bookmark';
 
 const Stack = createStackNavigator();
 
@@ -13,6 +14,7 @@ export default function App() {
       <Stack.Navigator screenOptions={{headerShown: false}}>
         <Stack.Screen name="Home" component={Homepage} />
         <Stack.Screen name="Detail" component={MovieDetail} />
+        <Stack.Screen name="Bookmark" component={UserBookmark} />
       </Stack.Navigator>
     </NavigationContainer>
   );

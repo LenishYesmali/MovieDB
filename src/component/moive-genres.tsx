@@ -1,10 +1,20 @@
 import React, {useEffect, useState} from 'react';
 import {StyleSheet, Text, View} from 'react-native';
+import {TouchableOpacity} from 'react-native-gesture-handler';
 
 import {fetchgenres} from '../healpers/api-helpers';
 
-export default function MovieGenre({genreIds}) {
-  const [movieGenres, setMovieGenres] = useState([]);
+interface IMovieGenreProps {
+  genreIds: number[];
+}
+
+interface IGenre {
+  id: number;
+  name: string;
+}
+
+export default function MovieGenre({genreIds}: IMovieGenreProps) {
+  const [movieGenres, setMovieGenres] = useState<IGenre[]>([]);
 
   useEffect(() => {
     const fetchMovieGenre = async () => {
@@ -22,9 +32,9 @@ export default function MovieGenre({genreIds}) {
     <View style={styles.container}>
       <View style={styles.genre}>
         {movieGenres.map(genre => (
-          <View style={styles.genre_container} key={genre.id}>
+          <TouchableOpacity style={styles.genre_container} key={genre.id}>
             <Text style={styles.genre_text}>{genre.name}</Text>
-          </View>
+          </TouchableOpacity>
         ))}
       </View>
     </View>
